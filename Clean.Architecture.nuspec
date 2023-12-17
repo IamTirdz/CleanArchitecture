@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Clean.Architecture.Solution.WebAPI</id>
+    <version>1.0.1</version>
+    <authors>Teejay</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+	<!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/Tirdz/CleanArchitecture</projectUrl>
+    <description>Clean Architecture Solution.</description>
+    <summary>
+      A Clean Architecture solution template for creating apps with ASP.NET Core.
+    </summary>
+    <releaseNotes>
+      
+    </releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>clean-architecture webapi template csharp dotnet</tags>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="**" exclude="**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;**\.DS_Store;**\.git\**\*;**\.github\**\*;**\.vs\**\*;**\*LICENSE;**\*.gitattributes;**\*README.md;**\*.gitignore;**\*nuget.config;" target="/content" />
+  </files>
+</package>
