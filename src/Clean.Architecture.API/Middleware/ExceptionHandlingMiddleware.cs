@@ -48,7 +48,12 @@ public class ExceptionHandlingMiddleware : IMiddleware
 
         var result = string.Empty;
         if (!string.IsNullOrEmpty(ex.Message))
+        {
+            if (ex.ErrorResponse.Code == null) ex.ErrorResponse.Code = (int)statusCode;
+            if (ex.ErrorResponse.CodeInfo == null) ex.ErrorResponse.CodeInfo = statusCode.ToString();
+
             result = JsonSerializer.Serialize(ex.ErrorResponse, _serializerOptions);
+        }
 
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.StatusCode = (int)statusCode;
