@@ -1,5 +1,6 @@
 ﻿using Clean.Architecture.Business.Common.Models;
 using Clean.Architecture.Business.Products.Commands.CreateProduct;
+using Clean.Architecture.Business.Products.Commands.RemoveProduct;
 using Clean.Architecture.Business.Products.Commands.UpdateProduct;
 using Clean.Architecture.Business.Products.Queries.GetProductById;
 using Clean.Architecture.Business.Products.Queries.GetProducts;
@@ -67,6 +68,20 @@ namespace Clean.Architecture.API.Controllers.v1
                 Description = input.Description,
                 Price = input.Price
             };
+            return Ok(await Mediator.Send(command));
+        }
+
+        [MapToApiVersion("1.0")]
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<ProductDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(typeof(ErrorResponseDto), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> RemoveProduct(long id)
+        {
+            var command = new RemoveProductCommand { ProductId = id };
             return Ok(await Mediator.Send(command));
         }
     }

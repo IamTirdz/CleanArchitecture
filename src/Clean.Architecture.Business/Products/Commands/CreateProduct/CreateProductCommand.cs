@@ -34,7 +34,7 @@ namespace Clean.Architecture.Business.Products.Commands.CreateProduct
             var newProduct = _mapper.Map<Product>(request);
 
             await _context.Products.AddAsync(newProduct);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(cancellationToken);
 
             return newProduct.Id;
         }

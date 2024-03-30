@@ -4,35 +4,28 @@ using Clean.Architecture.DataAccess.DataContext;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Clean.Architecture.Business.Products.Commands.UpdateProduct
+namespace Clean.Architecture.Business.Products.Commands.RemoveProduct
 {
-    public class UpdateProductCommand : IRequest<bool>
+    public class RemoveProductCommand : IRequest<bool>
     {
         public long ProductId { get; set; }
-        public string Name { get; set; } = null!;
-        public string? Description { get; set; }
-        public decimal Price { get; set; }
     }
 
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, bool>
+    public class RemoveProductCommandHandler : IRequestHandler<RemoveProductCommand, bool>
     {
         private readonly IAppicationDbContext _context;
 
-        public UpdateProductCommandHandler(IAppicationDbContext context)
+        public RemoveProductCommandHandler(IAppicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<bool> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(RemoveProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _context.Products.AsNoTracking().FirstOrDefaultAsync(p => p.Id == request.ProductId, cancellationToken);
             if (product == null) throw new NotFoundException(new ErrorResponseDto { Message = "Product not found" });
 
-            product.Name = request.Name;
-            product.Description = request.Description;
-            product.Price = request.Price;
-
-            _context.Products.Update(product);
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync(cancellationToken);
 
             return true;
