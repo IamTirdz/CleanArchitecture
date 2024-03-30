@@ -6,5 +6,7 @@ namespace Clean.Architecture.DataAccess.DataContext
     public interface IAppicationDbContext
     {
         DbSet<Product> Products { get; set; }
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

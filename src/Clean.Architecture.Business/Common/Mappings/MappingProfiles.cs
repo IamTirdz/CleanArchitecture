@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Clean.Architecture.Business.Products.Commands.CreateProduct;
 using Clean.Architecture.Business.Products.Queries.GetProducts;
 using Clean.Architecture.DataAccess.Entities;
 
@@ -9,5 +10,6 @@ public class MappingProfiles : Profile
     public MappingProfiles()
     {
         CreateMap<Product, ProductDto>();
+        CreateMap<CreateProductCommand, Product>();
     }
 }
