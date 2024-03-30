@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using NUnit.Framework;
 using System.Runtime.Serialization;
-using Clean.Architecture.DataAccess.Entities;
-using Clean.Architecture.Common.Dtos;
 using Clean.Architecture.DataAccess.DataContext;
 using System.Reflection;
+using Clean.Architecture.DataAccess.Entities;
+using Clean.Architecture.Business.Products.Queries.GetProducts;
 
 namespace Clean.Architecture.Business.Tests.Common.Mappings;
 
@@ -16,7 +16,7 @@ public class MappingTests
     public MappingTests()
     {
         _configuration = new MapperConfiguration(config =>
-            config.AddMaps(Assembly.GetAssembly(typeof(AppDbContext))));
+            config.AddMaps(Assembly.GetAssembly(typeof(AppicationDbContext))));
 
         _mapper = _configuration.CreateMapper();
     }
@@ -28,7 +28,7 @@ public class MappingTests
     }
 
     [Test]
-    [TestCase(typeof(SampleEntity), typeof(SampleDto))]
+    [TestCase(typeof(Product), typeof(ProductDto))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);
