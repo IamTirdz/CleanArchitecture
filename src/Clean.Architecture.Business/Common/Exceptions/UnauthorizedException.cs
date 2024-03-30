@@ -1,8 +1,16 @@
-﻿namespace Clean.Architecture.Business.Common.Exceptions;
+﻿using Clean.Architecture.Business.Common.Models;
 
-public class UnauthorizedException : Exception
+namespace Clean.Architecture.Business.Common.Exceptions
 {
-    public UnauthorizedException(string message) : base(message)
+    [Serializable]
+    public class UnauthorizedException : BaseException
     {
+        public UnauthorizedException()
+        {
+        }
+
+        public UnauthorizedException(ErrorResponseDto errorResponse) : base(errorResponse)
+        {
+        }
     }
 }

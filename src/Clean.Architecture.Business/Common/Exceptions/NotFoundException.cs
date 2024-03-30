@@ -1,13 +1,16 @@
-﻿namespace Clean.Architecture.Business.Common.Exceptions;
+﻿using Clean.Architecture.Business.Common.Models;
 
-public class NotFoundException : Exception
+namespace Clean.Architecture.Business.Common.Exceptions
 {
-    public NotFoundException(string message) : base(message)
+    [Serializable]
+    public class NotFoundException : BaseException
     {
-    }
+        public NotFoundException()
+        {
+        }
 
-    public NotFoundException(string message, Exception innerException)
-        : base(message, innerException)
-    {
+        public NotFoundException(ErrorResponseDto errorResponse) : base(errorResponse)
+        {
+        }
     }
 }

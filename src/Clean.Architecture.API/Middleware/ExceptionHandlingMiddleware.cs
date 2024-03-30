@@ -1,15 +1,20 @@
 ﻿using Clean.Architecture.Business.Common.Exceptions;
-using Newtonsoft.Json;
+using Clean.Architecture.Business.Common.Models;
+using System.Diagnostics;
 using System.Net;
+using System.Text.Json;
 
 namespace Clean.Architecture.API.Middleware;
 
 public class ExceptionHandlingMiddleware : IMiddleware
 {
     private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+    private readonly JsonSerializerOptions _serializerOptions;
+
     public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger)
     {
         _logger = logger;
+        _serializerOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
     }
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
@@ -18,60 +23,49 @@ public class ExceptionHandlingMiddleware : IMiddleware
         {
             await next(context);
         }
+        catch (BaseException e)
+        {
+            await HandleExceptions(context, e);
+        }
         catch (Exception e)
         {
             await HandleExceptions(context, e);
         }
     }
 
-    private async Task HandleExceptions(HttpContext httpContext, Exception e)
+    private async Task HandleExceptions(HttpContext httpContext, BaseException ex)
     {
-        var statusCode = GetStatusCode(e);
-        httpContext.Response.Headers.ContentType = "application/json";
-        var referrenceKey = Guid.NewGuid().ToString();
-        var message = e.Message;
-        var errors = GetExceptionErrors(e);
-
-        if (statusCode == (int)HttpStatusCode.InternalServerError)
+        var statusCode = ex switch
         {
-            message = "An unhandled exception has occurred.";
-            _logger.LogError(e, "ExceptionMessage: {exceptionMessage}", e.Message);
-        }
-
-        var response = new
-        {
-            Message = message,
-            ReferenceKey = referrenceKey,
-            Code = statusCode,
-            CodeInfo = ((HttpStatusCode)statusCode).ToString(),
-            Errors = errors
+            BadRequestException => HttpStatusCode.BadRequest,
+            UnauthorizedException => HttpStatusCode.Unauthorized,
+            ForbiddenException => HttpStatusCode.Forbidden,
+            NotFoundException => HttpStatusCode.NotFound,
+            ValidationException => HttpStatusCode.UnprocessableEntity,
+            BusinessException => HttpStatusCode.InternalServerError,
+            _ => HttpStatusCode.InternalServerError
         };
 
-        httpContext.Response.StatusCode = statusCode;
-        await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(response));
+        var result = string.Empty;
+        if (!string.IsNullOrEmpty(ex.Message))
+            result = JsonSerializer.Serialize(ex.ErrorResponse, _serializerOptions);
+
+        httpContext.Response.ContentType = "application/json";
+        httpContext.Response.StatusCode = (int)statusCode;
+        await httpContext.Response.WriteAsync(result);
     }
 
-    private IDictionary<string, string[]>? GetExceptionErrors(Exception ex)
+    private async Task HandleExceptions(HttpContext httpContext, Exception ex)
     {
-        IDictionary<string, string[]>? errors = null;
-        if (ex is ValidationException validationException)
-        {
-            errors = validationException.Errors;
-        }
+        var referenceKey = Activity.Current!.RootId!;
+        var baseMessage = "An unhandled exception has occurred.";
+        var message = new ErrorResponseDto(baseMessage, referenceKey);
+        var result = JsonSerializer.Serialize(message, _serializerOptions);
 
-        return errors;
-    }
+        _logger.LogError(ex, "{Message} - {ReferenceKey}", baseMessage, message.ReferenceKey);
 
-    private int GetStatusCode(Exception ex)
-    {
-        return ex switch
-        {
-            ForbiddenException => StatusCodes.Status403Forbidden,
-            NotFoundException => StatusCodes.Status404NotFound,
-            ValidationException => StatusCodes.Status422UnprocessableEntity,
-            UnauthorizedException => StatusCodes.Status401Unauthorized,
-            BadRequestException => StatusCodes.Status500InternalServerError,
-            _ => StatusCodes.Status500InternalServerError
-        };
+        httpContext.Response.ContentType = "application/json";
+        httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        await httpContext.Response.WriteAsync(result);
     }
 }

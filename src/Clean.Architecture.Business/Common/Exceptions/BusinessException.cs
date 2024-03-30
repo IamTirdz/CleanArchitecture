@@ -3,15 +3,14 @@
 namespace Clean.Architecture.Business.Common.Exceptions
 {
     [Serializable]
-    public class ValidationException : BaseException
+    public class BusinessException : BaseException
     {
-        public ValidationException()
+        public BusinessException()
         {
         }
 
-        public ValidationException(ErrorResponseDto errorResponse) : base(errorResponse)
+        public BusinessException(ErrorResponseDto errorResponse) : base(errorResponse)
         {
         }
     }
 }
-

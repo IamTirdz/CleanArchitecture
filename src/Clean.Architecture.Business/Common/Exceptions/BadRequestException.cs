@@ -1,8 +1,16 @@
-﻿namespace Clean.Architecture.Business.Common.Exceptions;
+﻿using Clean.Architecture.Business.Common.Models;
 
-public class BadRequestException : Exception
+namespace Clean.Architecture.Business.Common.Exceptions
 {
-    public BadRequestException(string message) : base(message)
+    [Serializable]
+    public class BadRequestException : BaseException
     {
+        public BadRequestException()
+        {
+        }
+
+        public BadRequestException(ErrorResponseDto errorResponse) : base(errorResponse)
+        {
+        }
     }
 }
