@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>Clean.Architecture.Solution.WebAPI</id>
-    <version>1.0.1</version>
-    <authors>Teejay</authors>
+    <version>1.0.2</version>
+    <authors>Tirdz</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
 	<!-- <icon>icon.png</icon> -->
     <projectUrl>https://github.com/Tirdz/CleanArchitecture</projectUrl>
     <description>Clean Architecture Solution.</description>
     <summary>
-      A Clean Architecture solution template for creating apps with ASP.NET Core.
+      Clean architecture solution template for creating web api with ASP.NET Core.
     </summary>
     <releaseNotes>
       

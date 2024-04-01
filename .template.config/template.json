@@ -2,11 +2,12 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "",
   "classifications": [
+	  "C#",
+    "API",
     "Cloud",
-    "WebAPI",
-    "MVC",
-    "CQRS",
-    "SignalR",
+    "Service",
+    "Web",
+    "Web API",
     "Clean Architecture"
   ],
   "identity": "Clean.Architecture.Solution.WebAPI",
@@ -32,6 +33,9 @@
         },
         {
           "choice": "net7.0"
+        },
+		    {
+          "choice": "net8.0"
         }
       ],
       "defaultValue": "net6.0",

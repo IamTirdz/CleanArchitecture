@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using NUnit.Framework;
-using System.Runtime.Serialization;
-using Clean.Architecture.DataAccess.DataContext;
-using System.Reflection;
 using Clean.Architecture.DataAccess.Entities;
 using Clean.Architecture.Business.Products.Queries.GetProducts;
+using Clean.Architecture.Business.Products.Commands.CreateProduct;
+using System.Runtime.CompilerServices;
+using Clean.Architecture.Business.Common.Mappings;
 
 namespace Clean.Architecture.Business.Tests.Common.Mappings;
 
@@ -16,7 +16,7 @@ public class MappingTests
     public MappingTests()
     {
         _configuration = new MapperConfiguration(config =>
-            config.AddMaps(Assembly.GetAssembly(typeof(AppicationDbContext))));
+            config.AddProfile<MappingProfiles>());
 
         _mapper = _configuration.CreateMapper();
     }
@@ -29,17 +29,22 @@ public class MappingTests
 
     [Test]
     [TestCase(typeof(Product), typeof(ProductDto))]
+    [TestCase(typeof(CreateProductCommand), typeof(Product))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);
 
         _mapper.Map(instance, source, destination);
+
+        Assert.That(destination, Is.Not.Null);
     }
 
     private object GetInstanceOf(Type type)
     {
         if (type.GetConstructor(Type.EmptyTypes) != null)
             return Activator.CreateInstance(type)!;
-        return FormatterServices.GetUninitializedObject(type);
+
+        return RuntimeHelpers.GetUninitializedObject(type);
+        //return FormatterServices.GetUninitializedObject(type);
     }
 }

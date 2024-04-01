@@ -10,6 +10,9 @@ public class MappingProfiles : Profile
     public MappingProfiles()
     {
         CreateMap<Product, ProductDto>();
-        CreateMap<CreateProductCommand, Product>();
+        CreateMap<CreateProductCommand, Product>()
+            .ForMember(d => d.Id, o => o.Ignore())
+            .ForMember(d => d.Created, o => o.Ignore())
+            .ForMember(d => d.Modified, o => o.Ignore());
     }
 }
