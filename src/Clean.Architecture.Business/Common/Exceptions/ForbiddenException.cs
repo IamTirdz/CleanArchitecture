@@ -1,8 +1,16 @@
-﻿namespace Clean.Architecture.Business.Common.Exceptions;
+﻿using Clean.Architecture.Business.Common.Models;
 
-public class ForbiddenException : Exception
+namespace Clean.Architecture.Business.Common.Exceptions
 {
-    public ForbiddenException(string message) : base(message)
+    [Serializable]
+    public class ForbiddenException : BaseException
     {
+        public ForbiddenException()
+        {
+        }
+
+        public ForbiddenException(ErrorResponseDto errorResponse) : base(errorResponse)
+        {
+        }
     }
 }

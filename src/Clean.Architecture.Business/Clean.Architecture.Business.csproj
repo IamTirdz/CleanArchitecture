@@ -10,20 +10,16 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
     <PackageReference Include="MediatR" Version="12.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Clean.Architecture.DataAccess\Clean.Architecture.DataAccess.csproj" />
     <ProjectReference Include="..\Clean.Architecture.External\Clean.Architecture.External.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Products\Commands\RemoveProduct\" />
+    <Folder Include="Products\Commands\UpdateProduct\" />
   </ItemGroup>
 
 </Project>

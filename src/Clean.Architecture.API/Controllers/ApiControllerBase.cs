@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clean.Architecture.API.Controllers;
@@ -9,8 +8,5 @@ namespace Clean.Architecture.API.Controllers;
 public class ApiControllerBase : ControllerBase
 {
     private IMediator _mediator = null!;
-    private IMapper _mapper = null!;
-
     public IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
-    public IMapper Mapper => _mapper ??= HttpContext.RequestServices.GetRequiredService<IMapper>();
 }
