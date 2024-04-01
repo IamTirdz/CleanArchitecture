@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Clean.Architecture.DataAccess.DataContext;
 
-public class AppicationDbContext : DbContext, IAppicationDbContext
+public class AppicationDbContext : DbContext, IApplicationDbContext
 {
     public AppicationDbContext(DbContextOptions<AppicationDbContext> options) : base(options)
     {

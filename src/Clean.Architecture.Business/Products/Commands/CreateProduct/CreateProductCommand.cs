@@ -17,10 +17,10 @@ namespace Clean.Architecture.Business.Products.Commands.CreateProduct
 
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, long>
     {
-        private readonly IAppicationDbContext _context;
+        private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public CreateProductCommandHandler(IAppicationDbContext context, IMapper mapper)
+        public CreateProductCommandHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

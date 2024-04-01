@@ -16,9 +16,9 @@ namespace Clean.Architecture.Business.Products.Commands.UpdateProduct
 
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, bool>
     {
-        private readonly IAppicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public UpdateProductCommandHandler(IAppicationDbContext context)
+        public UpdateProductCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }

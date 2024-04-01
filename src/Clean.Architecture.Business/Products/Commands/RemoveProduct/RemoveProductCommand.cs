@@ -13,9 +13,9 @@ namespace Clean.Architecture.Business.Products.Commands.RemoveProduct
 
     public class RemoveProductCommandHandler : IRequestHandler<RemoveProductCommand, bool>
     {
-        private readonly IAppicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public RemoveProductCommandHandler(IAppicationDbContext context)
+        public RemoveProductCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }

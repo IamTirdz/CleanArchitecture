@@ -14,7 +14,7 @@ namespace Clean.Architecture.DataAccess
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddScoped<IAppicationDbContext>(provider => provider.GetRequiredService<AppicationDbContext>());
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<AppicationDbContext>());
 
             return services;
         }

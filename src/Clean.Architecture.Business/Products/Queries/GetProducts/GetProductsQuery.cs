@@ -11,10 +11,10 @@ namespace Clean.Architecture.Business.Products.Queries.GetProducts
 
     public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<ProductDto>>
     {
-        private readonly IAppicationDbContext _context;
+        private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetProductsQueryHandler(IAppicationDbContext context, IMapper mapper)
+        public GetProductsQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

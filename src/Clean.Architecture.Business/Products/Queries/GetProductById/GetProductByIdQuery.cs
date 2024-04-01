@@ -15,10 +15,10 @@ namespace Clean.Architecture.Business.Products.Queries.GetProductById
 
     public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ProductDto>
     {
-        private readonly IAppicationDbContext _context;
+        private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetProductByIdQueryHandler(IAppicationDbContext context, IMapper mapper)
+        public GetProductByIdQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

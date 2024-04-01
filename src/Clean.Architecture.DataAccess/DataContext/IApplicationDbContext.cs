@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Clean.Architecture.DataAccess.DataContext
 {
-    public interface IAppicationDbContext
+    public interface IApplicationDbContext
     {
         DbSet<Product> Products { get; set; }
 
