@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
+<<<<<<< HEAD
     <id>Clean.Architecture.Solution.WebAPI</id>
     <version>1.0.2</version>
+=======
+    <id>Teejay.Clean.Architecture.Solution.Template</id>
+    <version>2.0.6</version>
+>>>>>>> update template
     <authors>Tirdz</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
 	<!-- <icon>icon.png</icon> -->
     <projectUrl>https://github.com/Tirdz/CleanArchitecture</projectUrl>
-    <description>Clean Architecture Solution.</description>
+    <description>Clean Architecture Solution Template</description>
     <summary>
+<<<<<<< HEAD
       Clean architecture solution template for creating web api with ASP.NET Core.
+=======
+      Clean architecture solution template for creating rest api with ASP.NET Core.
+>>>>>>> update template
     </summary>
     <releaseNotes>
       
@@ -20,8 +29,11 @@
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
+	<readme>docs\README.md</readme>
   </metadata>
+  
   <files>
-    <file src="**" exclude="**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;**\.DS_Store;**\.git\**\*;**\.github\**\*;**\.vs\**\*;**\*LICENSE;**\*.gitattributes;**\*README.md;**\*.gitignore;**\*nuget.config;" target="/content" />
+	<file src="docs\README.md" target="docs\" />
+	<file src="**/*" target="content" exclude="images\**;nupkg\**;bin\**;obj\**;*.user;*.lock.json;.DS_Store;.git\**;.github\**;.vs\**;*LICENSE;*.gitattributes;*.gitignore;nuget.config;README.md" />
   </files>
 </package>

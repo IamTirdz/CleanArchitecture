@@ -16,7 +16,9 @@ public static class ConfigureServices
         {
             config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
         });
 
         return services;

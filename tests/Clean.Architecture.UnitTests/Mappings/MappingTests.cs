@@ -1,12 +1,18 @@
 ﻿using AutoMapper;
 using NUnit.Framework;
 using Clean.Architecture.DataAccess.Entities;
+<<<<<<< HEAD:tests/Clean.Architecture.Business.Tests/Common/Mappings/MappingTests.cs
 using Clean.Architecture.Business.Products.Queries.GetProducts;
 using Clean.Architecture.Business.Products.Commands.CreateProduct;
 using System.Runtime.CompilerServices;
 using Clean.Architecture.Business.Common.Mappings;
+=======
+using System.Reflection;
+using Clean.Architecture.DataAccess.Contexts;
+using Clean.Architecture.Business.Features.Queries.Get;
+>>>>>>> update template:tests/Clean.Architecture.UnitTests/Mappings/MappingTests.cs
 
-namespace Clean.Architecture.Business.Tests.Common.Mappings;
+namespace Clean.Architecture.UnitTests.Mappings;
 
 public class MappingTests
 {
@@ -16,7 +22,11 @@ public class MappingTests
     public MappingTests()
     {
         _configuration = new MapperConfiguration(config =>
+<<<<<<< HEAD:tests/Clean.Architecture.Business.Tests/Common/Mappings/MappingTests.cs
             config.AddProfile<MappingProfiles>());
+=======
+            config.AddMaps(Assembly.GetAssembly(typeof(ApplicationDbContext))));
+>>>>>>> update template:tests/Clean.Architecture.UnitTests/Mappings/MappingTests.cs
 
         _mapper = _configuration.CreateMapper();
     }

@@ -1,5 +1,6 @@
 ﻿using Clean.Architecture.Business.Common.Models;
 
+<<<<<<< HEAD
 namespace Clean.Architecture.Business.Common.Exceptions
 {
     [Serializable]
@@ -15,5 +16,21 @@ namespace Clean.Architecture.Business.Common.Exceptions
         {
             ErrorResponse = errorResponse;
         }
+=======
+namespace Clean.Architecture.Business.Common.Exceptions;
+
+[Serializable]
+public abstract class BaseException : Exception
+{
+    public ErrorResponse ErrorResponse { get; set; } = null!;
+
+    protected BaseException() : base(string.Empty)
+    {
+    }
+
+    protected BaseException(ErrorResponse errorResponse)
+    {
+        ErrorResponse = errorResponse;
+>>>>>>> update template
     }
 }
