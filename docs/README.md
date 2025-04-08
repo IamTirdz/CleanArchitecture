@@ -7,7 +7,7 @@
 
 To get started, need to install the [NuGet Package](https://www.nuget.org/packages/Clean.Architecture.Solution.WebAPI):
 ```
-dotnet new install Clean.Architecture.Solution.WebAPI::2.0.6
+dotnet new install Teejay.Clean.Architecture.Solution.Template::1.0.1
 ```
 
 Once installed, create a new solution using the template. 

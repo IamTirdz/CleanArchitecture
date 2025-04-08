@@ -6,13 +6,12 @@
     <version>1.0.2</version>
 =======
     <id>Teejay.Clean.Architecture.Solution.Template</id>
-    <version>2.0.6</version>
->>>>>>> update template
-    <authors>Tirdz</authors>
+    <version>1.0.1</version>
+    <authors>IamTirdz</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
 	<!-- <icon>icon.png</icon> -->
-    <projectUrl>https://github.com/Tirdz/CleanArchitecture</projectUrl>
+    <projectUrl>https://github.com/IamTirdz/CleanArchitecture</projectUrl>
     <description>Clean Architecture Solution Template</description>
     <summary>
 <<<<<<< HEAD
